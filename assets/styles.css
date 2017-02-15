@@ -1,0 +1,221 @@
+fieldset input {
+    width: 300px;
+}
+
+#zones {
+    float: left;
+    width: 250px;
+    padding-top: 0.75em;
+}
+
+.zone ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#zones #zones-list {
+    padding-left: 0
+}
+
+.zone {
+    position: relative;
+    cursor: default;
+    list-style: none;
+    transition: transform .3s, -webkit-filter .3s, opacity .3s;
+}
+
+.zone a {
+    display: block;
+    position: relative;
+    padding: 0.1em 1em;
+    padding-top: 0.3em;
+    margin: 0.1em 0;
+    border: 1px solid transparent;
+    -webkit-transition: all .25s;
+    border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+}
+
+.zone a.enabled {
+    font-weight: bold;
+    background-color: #DDD;
+}
+
+.zone a.enabled em,
+.zone a:enabled em {
+    display: block;
+}
+
+.zone a:hover em {
+    color: #AAA;
+}
+
+.zone ol a {
+    padding-left: 3em;
+}
+
+.zone ol ol a {
+    padding-left: 5em;
+}
+
+.zone a:hover {
+    background-color: #F2F2F2;
+}
+
+.zone a .icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    background: black;
+    transition: opacity .15s, transform .15s
+}
+
+.zone a .name {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.zone a em {
+    display: none;
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+}
+
+/**
+ Scheduler
+ */
+#schedule {
+    float: left;
+    max-width: 650px;
+    margin-left: 1em;
+    padding: 1em;
+}
+
+#schedule ul {
+    border-bottom: 1px solid #DDD;
+}
+
+#schedule ul li {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+#schedule ul a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 0.2em 0.4em;
+}
+
+#schedule ul a.enabled {
+    font-weight: bold;
+    background-color: #DDD;
+}
+
+#schedule ul a:hover {
+    background-color: #EEE;
+}
+
+#schedule table {
+    width: 100%;
+    text-align: center;
+    border-spacing: 0;
+    border-collapse: separate;
+}
+
+#schedule.disabled #plan {
+    opacity: 0.3;
+}
+
+#schedule th {
+    padding: 0.5em;
+    border-bottom: 2px solid #DDD;
+}
+
+#schedule td {
+    padding: 0.5em;
+}
+
+tr:nth-child(even) {
+    background: #F9F9F9;
+}
+
+tr:nth-child(odd) {
+    background: #FFF
+}
+
+label {
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 0.1em;
+}
+
+#schedule_toggle {
+    margin-bottom: 1em;
+}
+
+#bearerTokenAdvice {
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    background-color: #FFF;
+    margin-top: -250px;
+    margin-left: -300px;
+    width: 600px;
+    height: 500px;
+    border: 1px solid #AAA;
+    padding: 20px 30px;
+    display: none;
+}
+
+#bearerTokenAdvice img {
+    margin-top: 20px;
+}
+
+#bearerTokenAdvice .popup-close {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    cursor: pointer;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    #zones {
+        width: 200px;
+    }
+
+    .zone a {
+        font-size: 0.8em;
+    }
+
+    .zone ol a {
+        padding-left: 2.2em;
+    }
+
+    .zone ol ol a {
+        padding-left: 3.6em;
+    }
+
+    .zone a .name {
+        max-width: 65%;
+    }
+
+    #schedule ul li a {
+        font-size: 0.8em;
+    }
+
+    #schedule {
+        font-size: 0.8em;
+        max-width: 600px;
+    }
+}

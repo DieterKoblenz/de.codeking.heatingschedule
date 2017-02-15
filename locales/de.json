@@ -1,0 +1,28 @@
+{
+  "Heating Schedule": "Heizplan",
+  "Bearer Token": "Bearer Token",
+  "Save": "Speichern",
+  "enable heating schedule": "Heizplan aktivieren",
+  "Monday": "Montag",
+  "Tuesday": "Dienstag",
+  "Wednesday": "Mittwoch",
+  "Thursday": "Donnerstag",
+  "Friday": "Freitag",
+  "Saturday": "Samstag",
+  "Sunday": "Sonntag",
+  "no change": "keine Änderung",
+  "Daytime": "Tageszeit",
+  "Time": "Zeit",
+  "Temperature*": "Temperatur*",
+  "Morning": "Morgens",
+  "Day": "Tags",
+  "Evening": "Abends",
+  "Night": "Nachts",
+  "* temperature will be updated within the wakeup interval of the thermostat (5 minutes by default)": "* Die Temperatur wird innerhalb des Aufwachintervals des Thermostates aktualisiert (standardmäßig 5 Minuten)",
+  "Unfortunately Homey doesn't allow to access devices / zones in an app right now, so we have to use the rest api with your bearer token to get data and update the temperature.": "Leider erlaubt Homey aktuell noch keinen Zugriff auf die Geräte / Zonen via app, weshalb hier auf die REST API mit deinem Bearer Token zurückgegriffen wird um Daten zu erhalten und die Temperaturen zu aktualisieren.",
+  "Go to": "Gehe zu",
+  "Login with your credentials": "Melde dich mit deinen Logindaten an",
+  "Copy the link from your homey": "Kopiere den Link von deinem Homey",
+  "Copy the bearer token (or the complete url) to the above input field": "Kopiere den Bearer Token (oder den kompletten Link) in das oben stehende Eingabefeld"
+
+}

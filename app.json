@@ -1,0 +1,12 @@
+{
+    "id": "de.codeking.heatingschedule",
+    "name": {
+        "en": "Heating Schedule"
+    },
+    "version": "0.0.1",
+    "compatibility": "0.x || 1.x",
+    "author": {
+        "name": "Frank Herrmann",
+        "email": "frank@codeking.de"
+    }
+}

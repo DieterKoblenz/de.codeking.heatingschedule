@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<head>
+    <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+    <script type=text/javascript src=/manager/webserver/assets/js/jquery.ui.js></script>
+    <script type=text/javascript src=/manager/webserver/assets/js/jquery.ui.touch-punch.js></script>
+    <script type=text/javascript src=/manager/api/assets/js/api.js></script>
+    <script type=text/javascript src=/manager/webserver/assets/js/jsrender.js></script>
+
+    <script type="text/javascript" src="../assets/settings.js"></script>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body>
+
+<div id="heating-schedule">
+    <h1 data-i18n="Heating Schedule"></h1>
+
+    <fieldset>
+        <legend data-i18n="Bearer Token"></legend>
+        <label for="token"></label><input type="text" id="token"/>
+        <button id="submit_token" type="submit" data-i18n="Save"></button>
+        <br/>
+        <small>
+            <small data-i18n="Unfortunately Homey doesn't allow to access devices / zones in an app right now, so we have to use the rest api with your bearer token to get data and update the temperature."></small>
+            <br/><a href="javascript:void(0)" onclick="$('#bearerTokenAdvice').show()"
+                    data-i18n="where do I get my bearer token?"></a>
+        </small>
+
+        <div id="bearerTokenAdvice">
+            <ol>
+                <li><span data-i18n="Go to"></span> <a href="https://my.athom.com" target="_blank">my.athom.com</a></li>
+                <li data-i18n="Login with your credentials"></li>
+                <li data-i18n="Copy the link from your homey"></li>
+                <li data-i18n="Copy the bearer token (or the complete url) to the above input field"></li>
+            </ol>
+            <img src="../assets/images/bearer.jpg" alt=""/>
+            <div class="popup-close" onclick="$('#bearerTokenAdvice').hide()">✕</div>
+        </div>
+    </fieldset>
+
+    <script id="zones-list-template" type="text/html">
+        <li class="zone" data-index="{{:index}}">
+            <a data-id="{{:id}}" href="javascript:void(0)">
+                <span class="icon" style="-webkit-mask-image: url(/manager/zones/assets/icons/{{>icon}}.svg)"></span>
+                <span class="name">{{:name}}</span>
+                <em class="fa fa-chevron-right"></em>
+            </a>
+
+            {{if children.length}}
+            <ol>
+                {{for children tmpl="#zones-list-template"/}}
+            </ol>
+            {{/if}}
+        </li>
+    </script>
+
+    <div id="zones">
+        <ol id="zones-list"></ol>
+    </div>
+
+    <div id="schedule">
+        <div id="schedule_toggle">
+            <input id="toggle_schedule" type="checkbox"/>
+            <label for="toggle_schedule" data-i18n="enable heating schedule"></label>
+        </div>
+
+        <div id="plan">
+            <ul id="days">
+                <li><a class="enabled" href="javascript:void(0)" data-day="mo" data-i18n="Monday"></a></li>
+                <li><a href="javascript:void(0)" data-day="tu" data-i18n="Tuesday"></a></li>
+                <li><a href="javascript:void(0)" data-day="we" data-i18n="Wednesday"></a></li>
+                <li><a href="javascript:void(0)" data-day="th" data-i18n="Thursday"></a></li>
+                <li><a href="javascript:void(0)" data-day="fr" data-i18n="Friday"></a></li>
+                <li><a href="javascript:void(0)" data-day="sa" data-i18n="Saturday"></a></li>
+                <li><a href="javascript:void(0)" data-day="su" data-i18n="Sunday"></a></li>
+            </ul>
+
+            <table>
+                <thead>
+                <tr>
+                    <th data-i18n="Daytime"></th>
+                    <th data-i18n="Time"></th>
+                    <th data-i18n="Temperature*"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="morning">
+                    <td data-i18n="Morning"></td>
+                    <td><select class="hour"></select> : <select class="minute"></select></td>
+                    <td><select class="temperature"></select></td>
+                </tr>
+                <tr id="day">
+                    <td data-i18n="Day"></td>
+                    <td><select class="hour"></select> : <select class="minute"></select></td>
+                    <td><select class="temperature"></select></td>
+                </tr>
+                <tr id="evening">
+                    <td data-i18n="Evening"></td>
+                    <td><select class="hour"></select> : <select class="minute"></select></td>
+                    <td><select class="temperature"></select></td>
+                </tr>
+                <tr id="night">
+                    <td data-i18n="Night"></td>
+                    <td><select class="hour"></select> : <select class="minute"></select></td>
+                    <td><select class="temperature"></select></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <small data-i18n="* temperature will be updated within the wakeup interval of the thermostat (5 minutes by default)"></small>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
