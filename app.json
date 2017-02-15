@@ -1,12 +1,83 @@
 {
-    "id": "de.codeking.heatingschedule",
-    "name": {
-        "en": "Heating Schedule"
-    },
-    "version": "0.0.1",
-    "compatibility": "0.x || 1.x",
-    "author": {
+  "id": "de.codeking.heatingschedule",
+  "name": {
+    "en": "Heating Schedule"
+  },
+  "version": "0.0.1",
+  "compatibility": "0.x || 1.x",
+  "author": {
+    "name": "Frank Herrmann",
+    "email": "frank@codeking.de",
+    "website": "https://codeking.de"
+  },
+  "contributors": {
+    "developers": [
+      {
         "name": "Frank Herrmann",
+        "website": "https://codeking.de",
         "email": "frank@codeking.de"
-    }
+      }
+    ]
+  },
+  "images": {
+    "large": "./assets/images/large.jpg",
+    "small": "./assets/images/small.jpg"
+  },
+  "category": "tools",
+  "permissions": [],
+  "flow": {
+    "triggers": [
+      {
+        "id": "heatingScheduleTriggered",
+        "title": {
+          "en": "Heating Schedule triggered",
+          "de": "Heizplan ausgeführt"
+        },
+        "tokens": [
+          {
+            "name": "scheduleDevices",
+            "title": {
+              "en": "Thermostats",
+              "de": "Thermostate"
+            },
+            "example": {
+              "en": "Livingroom: 20°, Bathroom: 22°",
+              "de": "Wohnzimmer: 20°, Bad: 22°"
+            }
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "scheduleState",
+        "title": {
+          "en": "Heating Schedule",
+          "de": "Heizplan"
+        },
+        "args": [
+          {
+            "name": "enabled",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "enabled",
+                "label": {
+                  "en": "enabled",
+                  "de": "aktiviert"
+                }
+              },
+              {
+                "id": "disabled",
+                "label": {
+                  "en": "disabled",
+                  "de": "deaktiviert"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

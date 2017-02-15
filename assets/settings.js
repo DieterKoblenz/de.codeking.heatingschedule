@@ -69,8 +69,12 @@ function onHomeyReady() {
                         if (zone.parent && $.inArray(zone.id, heating_zone_ids) == -1) {
                             delete zones[zone_id];
                         }
-                        else if (!$.isEmptyObject(zone.children)) {
-                            zones[zone_id].children = getZonesWithHeatingDevice(zone.children);
+                        else {
+                            zones[zone_id].schedule_enabled = (config.schedule.hasOwnProperty(zone.id) && config.schedule[zone.id].enabled);
+
+                            if (!$.isEmptyObject(zone.children)) {
+                                zones[zone_id].children = getZonesWithHeatingDevice(zone.children);
+                            }
                         }
                     });
 
@@ -93,6 +97,7 @@ function onHomeyReady() {
 
                 zones = getZonesWithHeatingDevice(zones);
                 zones[0].children = zoneChildrenToArrayRecursive(zones[0]);
+                zones[0].schedule_enabled = (config.schedule.hasOwnProperty(zones[0].id) && config.schedule[zones[0].id].enabled);
 
                 // render the zones
                 var items_render = $('#zones-list-template').render(zones[0]);
@@ -135,12 +140,13 @@ function initSchedule() {
 
     // enable / disable schedule
     $('#toggle_schedule').change(function () {
-
         if ($(this).is(':checked')) {
+            $('#zones-list a.enabled').addClass('schedule_enabled');
             $('#schedule').removeClass('disabled');
             $('#schedule select').attr('disabled', false);
         }
         else {
+            $('#zones-list a.enabled').removeClass('schedule_enabled');
             $('#schedule').addClass('disabled');
             $('#schedule select').attr('disabled', true);
         }
@@ -304,17 +310,6 @@ function setDefaults() {
 }
 
 /**
- * Show bearer token advice
- */
-function showBearerToken() {
-    $('#bearerTokenAdvice').show();
-}
-
-function hideBearerTokenAdvice() {
-    $('#bearerTokenAdvice').show();
-}
-
-/**
  * DEV Mode Options
  */
 if (document.location.href.indexOf('127.0.0.1') > -1) {
@@ -325,6 +320,9 @@ if (document.location.href.indexOf('127.0.0.1') > -1) {
 
         initSchedule();
     });
+
+    heating_zone_ids.push('9919ee1e-ffbc-480b-bc4b-77fb047e9e68');
+    heating_zone_ids.push('1815c884-af06-4d53-a2c1-6f4c77e9eb4e');
 
     function __(str) {
         return str;

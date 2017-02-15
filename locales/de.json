@@ -23,6 +23,7 @@
   "Go to": "Gehe zu",
   "Login with your credentials": "Melde dich mit deinen Logindaten an",
   "Copy the link from your homey": "Kopiere den Link von deinem Homey",
-  "Copy the bearer token (or the complete url) to the above input field": "Kopiere den Bearer Token (oder den kompletten Link) in das oben stehende Eingabefeld"
-
+  "Copy the bearer token (or the complete url) to the above input field": "Kopiere den Bearer Token (oder den kompletten Link) in das oben stehende Eingabefeld",
+  "enabled": "aktiviert",
+  "disabled": "deaktiviert"
 }

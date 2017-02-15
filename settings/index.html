@@ -42,7 +42,7 @@
 
     <script id="zones-list-template" type="text/html">
         <li class="zone" data-index="{{:index}}">
-            <a data-id="{{:id}}" href="javascript:void(0)">
+            <a data-id="{{:id}}" class="{{if schedule_enabled}}schedule_enabled{{/if}}" href="javascript:void(0)">
                 <span class="icon" style="-webkit-mask-image: url(/manager/zones/assets/icons/{{>icon}}.svg)"></span>
                 <span class="name">{{:name}}</span>
                 <em class="fa fa-chevron-right"></em>

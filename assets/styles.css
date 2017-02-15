@@ -46,6 +46,11 @@ fieldset input {
 .zone a.enabled em,
 .zone a:enabled em {
     display: block;
+    color: #CCC;
+}
+
+.zone a.schedule_enabled em {
+    color: #333;
 }
 
 .zone a:hover em {

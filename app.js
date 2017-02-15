@@ -5,18 +5,19 @@ var request = require('request');
 var config = {},
     heating_zone_ids = [],
     zone2devices = {},
+    deviceNames = {},
     schedule = {},
     zones = {},
     devices = {},
     address,
-    lastUpdate;
+    lastUpdate,
+    scheduleState = true,
+    tokens = {};
 
 /**
- * init heating schedule
+ * init schedule loop
  */
-function init() {
-    Homey.log("Starting Heating Schedule...");
-
+function initScheduler() {
     // get local address
     Homey.manager('cloud').getLocalAddress(function (err, localAddress) {
         address = localAddress;
@@ -28,18 +29,11 @@ function init() {
             Homey.manager('settings').set('config', config);
         }
 
-        // init scheduler
-        initScheduler();
-    });
-}
-
-/**
- * init schedule loop
- */
-function initScheduler() {
-    getConfig(function () {
-        setInterval(doSchedule, 1000 * 60);
-        doSchedule();
+        // get config and run instance
+        getConfig(function () {
+            setInterval(doSchedule, 1000 * 60);
+            doSchedule();
+        });
     });
 }
 
@@ -98,6 +92,11 @@ function doSchedule() {
         return false;
     }
 
+    // return false if schedule has been disabled
+    if(!scheduleState) {
+        return false;
+    }
+
     // check schedule and update target temperatures
     var now = new Date(),
         day = getWeekDay(),
@@ -106,6 +105,7 @@ function doSchedule() {
 
     Homey.log(day + ' - ' + hour + ':' + minute);
 
+    var devices_updated = [];
     if (schedule.hasOwnProperty(day)) {
         for (var device_id in schedule[day]) {
             var device_hours = schedule[day][device_id];
@@ -121,12 +121,22 @@ function doSchedule() {
 
                     // set temperature
                     if (device_temperature > 0) {
+                        var device = deviceNames[device_id];
                         Homey.log('Set target temperature of device ' + device_id + ' to ' + device_temperature + '°');
+
+                        devices_updated.push(device + ': ' + device_temperature + '°');
                         updateTemperature(device_id, device_temperature);
                     }
                 }
             }
         }
+    }
+
+    // trigger flow
+    if(devices_updated.length) {
+        Homey.manager('flow').trigger('heatingScheduleTriggered', {
+            scheduleDevices: devices_updated.join(', ')
+        });
     }
 }
 
@@ -179,14 +189,17 @@ function prepareScheduledDevices(zones) {
                         for (var daytime in plan) {
                             var dayplan = plan[daytime];
                             if (dayplan.hasOwnProperty('hour')) {
-                                if (!schedule[day].hasOwnProperty(dayplan.hour)) {
+                                // set hour
+                                if (!schedule[day][device_id].hasOwnProperty(dayplan.hour)) {
                                     schedule[day][device_id][dayplan.hour] = {};
                                 }
 
+                                // set minute
                                 if (!schedule[day][device_id][dayplan.hour].hasOwnProperty(dayplan.minute)) {
                                     schedule[day][device_id][dayplan.hour][dayplan.minute] = 0;
                                 }
 
+                                // set target temperature
                                 schedule[day][device_id][dayplan.hour][dayplan.minute] = dayplan.temperature;
                             }
                         }
@@ -276,6 +289,7 @@ function addHeatingDevices() {
             var device = devices[device_id];
 
             if (device.capabilities.hasOwnProperty('target_temperature')) {
+                deviceNames[device.id] = device.name;
                 addDeviceToZone(device.zone.id, device.id, device.zone.parent);
             }
         }
@@ -368,7 +382,7 @@ function api(path, json, callback) {
             json: json ? json : true,
             timeout: 10000
         }, function (error, response, body) {
-            if(typeof(response) != 'undefined') {
+            if (typeof(response) != 'undefined') {
                 if (typeof(callback) == 'function') {
                     callback(body.result);
                 }
@@ -379,4 +393,37 @@ function api(path, json, callback) {
     }
 }
 
-module.exports.init = init;
+/**
+ * create token for enabling / disabling schedule
+ */
+function createTokens() {
+    Homey.manager('flow').registerToken('scheduleState', {type: 'boolean', title: 'enabled'}, function (err, token) {
+        if (err) Homey.log(err);
+
+        tokens['scheduleState'] = token;
+        tokens['scheduleState'].setValue(scheduleState);
+    });
+}
+
+/**
+ * action flow callbacks
+ */
+function createActions() {
+    Homey.manager('flow').on('action.scheduleState', function(callback, args) {
+        scheduleState = (args.enabled == 'enabled') ? true : false;
+        tokens['scheduleState'].setValue(scheduleState);
+
+        callback(null, true);
+    });
+}
+
+/**
+ * init heating schedule
+ */
+module.exports.init = function () {
+    Homey.log("Starting Heating Schedule...");
+
+    initScheduler();
+    createTokens();
+    createActions();
+};
