@@ -122,8 +122,8 @@ function onHomeyReady() {
 function initSchedule() {
     // init temperatures
     $('select.temperature').append('<option value="-1">' + __('no change') + '</option>');
-    for (var t = 4; t < 29; t++) {
-        $('select.temperature').append('<option value="' + t + '">' + t + '°C</option>');
+    for (var t = 4; t < 28.5; (t += 0.5)) {
+        $('select.temperature').append('<option value="' + t + '">' + t.toFixed(1) + '°C</option>');
     }
 
     // init hours

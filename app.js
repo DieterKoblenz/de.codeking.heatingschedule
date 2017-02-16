@@ -11,7 +11,7 @@ var config = {},
     devices = {},
     address,
     lastUpdate,
-    scheduleState = true,
+    enabled = true,
     tokens = {};
 
 /**
@@ -93,7 +93,7 @@ function doSchedule() {
     }
 
     // return false if schedule has been disabled
-    if(!scheduleState) {
+    if(!enabled) {
         return false;
     }
 
@@ -122,7 +122,7 @@ function doSchedule() {
                     // set temperature
                     if (device_temperature > 0) {
                         var device = deviceNames[device_id];
-                        Homey.log('Set target temperature of device ' + device_id + ' to ' + device_temperature + '°');
+                        Homey.log('Set target temperature of device ' + device + ' (' + device_id + ') to ' + device_temperature + '°');
 
                         devices_updated.push(device + ': ' + device_temperature + '°');
                         updateTemperature(device_id, device_temperature);
@@ -136,6 +136,9 @@ function doSchedule() {
     if(devices_updated.length) {
         Homey.manager('flow').trigger('heatingScheduleTriggered', {
             scheduleDevices: devices_updated.join(', ')
+        }, null, function(err, success) {
+            if(err) Homey.log(err);
+            Homey.log('Flow heatingScheduleTriggered:', success);
         });
     }
 }
@@ -379,8 +382,7 @@ function api(path, json, callback) {
             auth: {
                 'bearer': config.token
             },
-            json: json ? json : true,
-            timeout: 10000
+            json: json ? json : true
         }, function (error, response, body) {
             if (typeof(response) != 'undefined') {
                 if (typeof(callback) == 'function') {
@@ -400,8 +402,8 @@ function createTokens() {
     Homey.manager('flow').registerToken('scheduleState', {type: 'boolean', title: 'enabled'}, function (err, token) {
         if (err) Homey.log(err);
 
-        tokens['scheduleState'] = token;
-        tokens['scheduleState'].setValue(scheduleState);
+        tokens['enabled'] = token;
+        tokens['enabled'].setValue(enabled);
     });
 }
 
@@ -410,8 +412,8 @@ function createTokens() {
  */
 function createActions() {
     Homey.manager('flow').on('action.scheduleState', function(callback, args) {
-        scheduleState = (args.enabled == 'enabled') ? true : false;
-        tokens['scheduleState'].setValue(scheduleState);
+        enabled = (args.enabled == 'enabled') ? true : false;
+        tokens['enabled'].setValue(enabled);
 
         callback(null, true);
     });

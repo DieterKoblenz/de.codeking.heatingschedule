@@ -19,7 +19,7 @@
   "Evening": "Abends",
   "Night": "Nachts",
   "* temperature will be updated within the wakeup interval of the thermostat (5 minutes by default)": "* Die Temperatur wird innerhalb des Aufwachintervals des Thermostates aktualisiert (standardmäßig 5 Minuten)",
-  "Unfortunately Homey doesn't allow to access devices / zones in an app right now, so we have to use the rest api with your bearer token to get data and update the temperature.": "Leider erlaubt Homey aktuell noch keinen Zugriff auf die Geräte / Zonen via app, weshalb hier auf die REST API mit deinem Bearer Token zurückgegriffen wird um Daten zu erhalten und die Temperaturen zu aktualisieren.",
+  "Unfortunately Homey doesn't allow to access devices / zones in an app right now, so we have to use the rest api with your bearer token to retrieve data and update the temperature.": "Leider erlaubt Homey aktuell noch keinen Zugriff auf die Geräte / Zonen via app, weshalb hier auf die REST API mit deinem Bearer Token zurückgegriffen wird um Daten zu erhalten und die Temperaturen zu aktualisieren.",
   "Go to": "Gehe zu",
   "Login with your credentials": "Melde dich mit deinen Logindaten an",
   "Copy the link from your homey": "Kopiere den Link von deinem Homey",

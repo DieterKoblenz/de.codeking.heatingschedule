@@ -19,6 +19,7 @@ If you like this app:
 ## ToDo
 * action card: zones: update all thermostats within a zone (e.g. for leaving / coming home)
 * action card: zones: trigger latest schedule for a zone (e.g. for coming home)
+* condition card: low battery
 
 ## Changelog
 * 0.0.1 - initial beta release
