@@ -1,6 +1,6 @@
 # Heating Schedule for Homey
 This app let you control your thermostats and schedule several timings for your zones.<br />
-After installation, it shows your zones with attached thermostats.<br />
+After installation, it shows your a sheduling mask for each zone with attached thermostats.<br />
 <br />
 For each zone you can enable the heating schedule. If one zone isn't enabled, it automatically inherits the schedule from the parent zone (if enabled).
 <br />
@@ -11,7 +11,7 @@ If you like this app:
 
 ## Cards
 **Trigger**
-* when a schedule updated thermostats, the condition will be triggered with a device token which contains thermostat name and the updated temperature
+* when a schedule updated thermostats, the condition will be triggered with a device token which contains the thermostat name and the updated temperature
 
 **Action**
 * enable / disable the heating schedule (e.g. for holidays, no members at home)
@@ -22,7 +22,7 @@ If you like this app:
 * condition card: low battery
 
 ## Changelog
-* 0.0.1 - initial beta release, tested with Danfoss LC13 only (but should work with any other thermostate)!
+* 0.0.1 - initial beta release
 
 ## Screenshots
 ![alt text](https://raw.githubusercontent.com/CodeKingLabs/de.codeking.heatingschedule/master/assets/examples/settings.jpg "Settings")
