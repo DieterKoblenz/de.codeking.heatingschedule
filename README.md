@@ -10,7 +10,7 @@ If you like this app:
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BZGYJY5M8KZ7N" target="_blank"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" /></a>
 
 ## Cards
-**Condition**
+**Trigger**
 * when a schedule updated thermostats, the condition will be triggered with a device token which contains thermostat name and the updated temperature
 
 **Action**

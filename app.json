@@ -1,7 +1,12 @@
 {
   "id": "de.codeking.heatingschedule",
   "name": {
-    "en": "Heating Schedule"
+    "en": "Heating Schedule",
+    "de": "Heizplan"
+  },
+  "description": {
+    "en": "Homey Heating Schedule",
+    "de": "Homey Heizplan"
   },
   "version": "0.0.1",
   "compatibility": "0.x || 1.x",
