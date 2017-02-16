@@ -28,7 +28,7 @@
     "large": "./assets/images/large.jpg",
     "small": "./assets/images/small.jpg"
   },
-  "category": "tools",
+  "category": "climate",
   "permissions": [],
   "flow": {
     "triggers": [
