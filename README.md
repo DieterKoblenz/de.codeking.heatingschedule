@@ -1,4 +1,4 @@
-# Heating Schedule
+# Heating Schedule for Homey
 This app let you control your thermostats and schedule several timings for your zones.<br />
 After installation, it shows your zones with attached thermostats.<br />
 <br />
@@ -23,3 +23,10 @@ If you like this app:
 
 ## Changelog
 * 0.0.1 - initial beta release
+
+## Screenshots
+![alt text](https://raw.githubusercontent.com/CodeKingLabs/de.codeking.heatingschedule/master/assets/examples/settings.jpg "Settings")
+
+![alt text](https://raw.githubusercontent.com/CodeKingLabs/de.codeking.heatingschedule/master/assets/examples/flow1.jpg "Flow 1")
+
+![alt text](https://raw.githubusercontent.com/CodeKingLabs/de.codeking.heatingschedule/master/assets/examples/flow2.jpg "Flow 2")
