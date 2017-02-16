@@ -99,15 +99,22 @@ function onHomeyReady() {
                 zones[0].children = zoneChildrenToArrayRecursive(zones[0]);
                 zones[0].schedule_enabled = (config.schedule.hasOwnProperty(zones[0].id) && config.schedule[zones[0].id].enabled);
 
-                // render the zones
-                var items_render = $('#zones-list-template').render(zones[0]);
-                $('#zones-list').html(items_render);
+                // on empty heating devices, prompt error
+                if (!heating_zone_ids.length) {
+                    $('#schedule-config').html('<div class="error"><em class="fa fa-warning"></em> ' + __('no_thermostats_attached') + '</div>');
+                }
+                // otherwise, run scheduler :-)
+                else {
+                    // render the zones
+                    var items_render = $('#zones-list-template').render(zones[0]);
+                    $('#zones-list').html(items_render);
 
-                // log config
-                //console.log(JSON.stringify(config));
+                    // log config
+                    //console.log(JSON.stringify(config));
 
-                // init schedule
-                initSchedule();
+                    // init schedule
+                    initSchedule();
+                }
 
                 // settings are ready now! :-)
                 Homey.ready();
@@ -121,7 +128,7 @@ function onHomeyReady() {
  */
 function initSchedule() {
     // init temperatures
-    $('select.temperature').append('<option value="-1">' + __('no change') + '</option>');
+    $('select.temperature').append('<option value="-1">' + __('no_change') + '</option>');
     for (var t = 4; t < 28.5; (t += 0.5)) {
         $('select.temperature').append('<option value="' + t + '">' + t.toFixed(1) + '°C</option>');
     }
@@ -176,6 +183,9 @@ function initSchedule() {
 
         var day = $(this).data('day');
         loadConfig(day);
+
+        $('#copy li').removeClass('copied').removeClass('disabled');
+        $('#copy .' + day).addClass('disabled');
 
         return false;
     });
@@ -246,7 +256,7 @@ function loadConfig(day) {
 /**
  * save config to homey
  */
-function saveConfig() {
+function saveConfig(force_day) {
     var zone_id = $('#zones-list a.enabled').data('id'),
         settings = {
             enabled: $('#toggle_schedule').is(':checked'),
@@ -265,7 +275,10 @@ function saveConfig() {
 
         settings.plan[day] = plans.hasOwnProperty(day) && !$.isEmptyObject(plans[day]) ? plans[day] : default_plan;
 
-        if ($(this).hasClass('enabled')) {
+        if (
+            (!force_day && $(this).hasClass('enabled'))
+            || (force_day && force_day == day)
+        ) {
             var plan = {};
 
             $('#plan tbody tr').each(function () {
@@ -289,6 +302,24 @@ function saveConfig() {
 }
 
 /**
+ * copys a schedule to another day
+ */
+function copyConfig(to_day) {
+    if (!$('#copy li.' + to_day).hasClass('disabled')) {
+        if ($('#copy li.' + to_day).hasClass('copied')) {
+            $('#copy li.' + to_day).find('em').fadeOut(100, function () {
+                $(this).fadeIn(100);
+            });
+        }
+        else {
+            $('#copy li.' + to_day).addClass('copied');
+        }
+
+        saveConfig(to_day);
+    }
+}
+
+/**
  * set default data
  */
 function setDefaults() {
@@ -307,6 +338,9 @@ function setDefaults() {
 
     $('#night').find('select.hour').val(0);
     $('#night').find('select.temperature').val(18);
+
+    $('#copy li').removeClass('copied').removeClass('disabled');
+    $('#copy li:first').next().addClass('disabled');
 }
 
 /**

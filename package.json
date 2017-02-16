@@ -1,5 +1,5 @@
 {
-  "name": "Homey Heating Schedule",
+  "name": "de.codeking.heatingschedule",
   "version": "0.0.1",
   "description": "Homey Heating Schedule",
   "main": "app.js",

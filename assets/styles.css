@@ -99,7 +99,7 @@ fieldset input {
  */
 #schedule {
     float: left;
-    max-width: 650px;
+    max-width: 520px;
     margin-left: 1em;
     padding: 1em;
 }
@@ -150,18 +150,81 @@ fieldset input {
     padding: 0.5em;
 }
 
-tr:nth-child(even) {
+#schedule tr:nth-child(even) {
     background: #F9F9F9;
 }
 
-tr:nth-child(odd) {
+#schedule tr:nth-child(odd) {
     background: #FFF
 }
 
-label {
+#schedule label {
     cursor: pointer;
     display: inline-block;
     margin-top: 0.1em;
+}
+
+#schedule ol {
+    margin: 1em 0;
+    padding: 0;
+    text-align: right;
+    float: right;
+    width: 100%;
+}
+
+#schedule ol li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: inline-block;
+}
+
+#schedule ol li.title {
+    padding-right: 1em;
+    text-align: left;
+}
+
+#schedule ol li a {
+    display: block;
+    background-color: #DDD;
+    padding: 0.2em 0.4em;
+    color: #333;
+    text-decoration: none;
+}
+#schedule ol li a:hover {
+    background-color: #CCC;
+}
+
+#schedule ol li.copied a {
+    background-color: #AAA;
+}
+
+#schedule ol li.copied span {
+    opacity: 0.4;
+}
+
+#schedule ol li.copied em {
+    display: block;
+}
+
+#schedule ol li.disabled {
+    background-color: #AAA;
+    opacity: 0.3;
+}
+
+#schedule ol li.disabled a {
+    cursor: default;
+}
+
+#schedule ol li em {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    font-size: 1.3em;
+    padding: 0.15em 0;
+    text-align: center;
+    display: none;
 }
 
 #schedule_toggle {
@@ -194,6 +257,17 @@ label {
     cursor: pointer;
 }
 
+.error {
+    background-color: #FEEFB3;
+    border-radius: 3px;
+    padding: 0.2em 0.4em;
+    color: #9F6000;
+}
+
+.error a {
+    color: #9F6000;
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     #zones {
         width: 200px;
@@ -221,6 +295,6 @@ label {
 
     #schedule {
         font-size: 0.8em;
-        max-width: 600px;
+        max-width: 450px;
     }
 }
