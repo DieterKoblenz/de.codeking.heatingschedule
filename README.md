@@ -11,7 +11,10 @@ If you like this app:
 
 ## Cards
 **Trigger**
-* when a schedule updated thermostats, the condition will be triggered with a device token which contains the thermostat name and the updated temperature
+* Thermostat updated
+    * when a schedule triggers an thermostat
+* Thermostat triggered
+    * when a schededule finally updates the temperature (within the wakeup interval)
 
 **Action**
 * enable / disable the heating schedule (e.g. for holidays, no members at home)

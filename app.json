@@ -36,18 +36,38 @@
         "id": "heatingThermostatTriggered",
         "title": {
           "en": "Thermostat triggered",
-          "de": "Thermostat wurd aktualisiert"
+          "de": "Thermostat wird aktualisiert"
         },
         "tokens": [
           {
-            "name": "scheduleDevices",
+            "name": "scheduleDeviceTriggered",
             "title": {
-              "en": "Thermostats",
-              "de": "Thermostate"
+              "en": "Thermostat",
+              "de": "Thermostat"
             },
             "example": {
-              "en": "Livingroom: 20°, Bathroom: 22°",
-              "de": "Wohnzimmer: 20°, Bad: 22°"
+              "en": "Livingroom: 20°",
+              "de": "Wohnzimmer: 20°"
+            }
+          }
+        ]
+      },
+      {
+        "id": "heatingThermostatUpdated",
+        "title": {
+          "en": "Thermostat was updated",
+          "de": "Thermostat wurde aktualisiert"
+        },
+        "tokens": [
+          {
+            "name": "scheduleDeviceUpdated",
+            "title": {
+              "en": "Thermostat",
+              "de": "Thermostat"
+            },
+            "example": {
+              "en": "Bathroom: 22°",
+              "de": "Bad: 22°"
             }
           }
         ]
