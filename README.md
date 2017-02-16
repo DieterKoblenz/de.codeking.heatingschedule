@@ -22,7 +22,7 @@ If you like this app:
 * condition card: low battery
 
 ## Changelog
-* 0.0.1 - initial beta release
+* 0.0.1 - initial beta release, tested with Danfoss LC13 only (but should work with any other thermostate)!
 
 ## Screenshots
 ![alt text](https://raw.githubusercontent.com/CodeKingLabs/de.codeking.heatingschedule/master/assets/examples/settings.jpg "Settings")
