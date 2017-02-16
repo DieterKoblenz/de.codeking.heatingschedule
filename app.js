@@ -126,11 +126,11 @@ function doSchedule() {
                         updateTemperature(device_id, device_temperature);
 
                         // trigger flow
-                        Homey.manager('flow').trigger('heatingScheduleTriggered', {
+                        Homey.manager('flow').trigger('heatingThermostatTriggered', {
                             scheduleDevices: device + ': ' + device_temperature + '°'
                         }, null, function (err, success) {
                             if (err) Homey.log(err);
-                            Homey.log('Flow heatingScheduleTriggered:', success);
+                            Homey.log('Flow heatingThermostatTriggered:', success);
                         });
                     }
                 }

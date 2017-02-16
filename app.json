@@ -33,10 +33,10 @@
   "flow": {
     "triggers": [
       {
-        "id": "heatingScheduleTriggered",
+        "id": "heatingThermostatTriggered",
         "title": {
-          "en": "Heating Schedule triggered",
-          "de": "Heizplan ausgeführt"
+          "en": "Thermostat triggered",
+          "de": "Thermostat wurd aktualisiert"
         },
         "tokens": [
           {
