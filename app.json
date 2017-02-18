@@ -2,11 +2,13 @@
   "id": "de.codeking.heatingschedule",
   "name": {
     "en": "Heating Schedule",
-    "de": "Heizplan"
+    "de": "Heizplan",
+    "nl": "Thermostaat Programma"
   },
   "description": {
     "en": "Homey Heating Schedule",
-    "de": "Homey Heizplan"
+    "de": "Homey Heizplan",
+    "nl": "Homey Thermostaat Programma"
   },
   "version": "0.0.1",
   "compatibility": "0.x || 1.x",
@@ -36,18 +38,21 @@
         "id": "heatingThermostatTriggered",
         "title": {
           "en": "Thermostat triggered",
-          "de": "Thermostat wird aktualisiert"
+          "de": "Thermostat wird aktualisiert",
+          "nl": "Thermostaat wordt aangepast"
         },
         "tokens": [
           {
             "name": "scheduleDeviceTriggered",
             "title": {
               "en": "Thermostat",
-              "de": "Thermostat"
+              "de": "Thermostat",
+              "nl": "Thermostaat"
             },
             "example": {
               "en": "Livingroom: 20°",
-              "de": "Wohnzimmer: 20°"
+              "de": "Wohnzimmer: 20°",
+              "nl": "Woonkamer: 20°"
             }
           }
         ]
@@ -56,18 +61,21 @@
         "id": "heatingThermostatUpdated",
         "title": {
           "en": "Thermostat was updated",
-          "de": "Thermostat wurde aktualisiert"
+          "de": "Thermostat wurde aktualisiert",
+          "nl": "Thermostaat wordt aangepast"
         },
         "tokens": [
           {
             "name": "scheduleDeviceUpdated",
             "title": {
               "en": "Thermostat",
-              "de": "Thermostat"
+              "de": "Thermostat",
+              "nl": "Thermostaat"
             },
             "example": {
               "en": "Bathroom: 22°",
-              "de": "Bad: 22°"
+              "de": "Bad: 22°",
+              "nl": "Badkamer: 22°"
             }
           }
         ]
@@ -78,7 +86,8 @@
         "id": "scheduleState",
         "title": {
           "en": "Heating Schedule",
-          "de": "Heizplan"
+          "de": "Heizplan",
+          "nl": "Thermostaat Programma"
         },
         "args": [
           {
@@ -89,14 +98,16 @@
                 "id": "enabled",
                 "label": {
                   "en": "enabled",
-                  "de": "aktiviert"
+                  "de": "aktiviert",
+                  "nl": "ingeschakeld"
                 }
               },
               {
                 "id": "disabled",
                 "label": {
                   "en": "disabled",
-                  "de": "deaktiviert"
+                  "de": "deaktiviert",
+                  "nl": "uitgeschakeld"
                 }
               }
             ]
